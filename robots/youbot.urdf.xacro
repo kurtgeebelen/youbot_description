@@ -2,7 +2,7 @@
 <robot xmlns:sensor="http://playerstage.sourceforge.net/gazebo/xmlschema/#sensor"
        xmlns:controller="http://playerstage.sourceforge.net/gazebo/xmlschema/#controller"
        xmlns:interface="http://playerstage.sourceforge.net/gazebo/xmlschema/#interface"
-       xmlns:xacro="http://ros.org/wiki/xacro"
+       xmlns:xacro="http://playerstage.sourceforge.net/gazebo/xmlschema/#interface"
        name="youbot" >
   
   <!-- The following xacro:included files set up definitions of parts of the robot body -->
@@ -28,7 +28,7 @@
   <xacro:include filename="$(find youbot_description)/urdf/materials.urdf.xacro" />
 
   <!-- sensors -->
-  <xacro:include filename="$(find youbot_description)/urdf/sensors/hokuyo_urg04_laser.urdf.xacro"/>
+  <xacro:include filename="$(find youbot_description)/urdf/sensors/asus_xtion_camera.urdf.xacro"/>
 						     
   <!-- Now we can start using the macros xacro:included above to define the actual youbot -->
 
@@ -50,15 +50,20 @@
   <xacro:youbot_arm name="arm" parent="base_link">
     <origin xyz="0.143 0 0.046" rpy="0 0 0" />
   </xacro:youbot_arm>
-
+  
   <xacro:youbot_gripper name="gripper" parent="arm_link_5">
     <origin xyz="0 0 0" rpy="0 0 0" />
   </xacro:youbot_gripper>
 
   <!-- base laser front -->
+  <!--
   <xacro:hokuyo_urg04_laser name="base_laser_front" parent="base" ros_topic="base_scan" update_rate="10" min_angle="-1.57" max_angle="1.57">
     <origin xyz="0.3 0 -0.03" rpy="0 0 0"/>
-  </xacro:hokuyo_urg04_laser>
+  </xacro:hokuyo_urg04_laser> -->
 
+  <xacro:asus_xtion_camera name="xtion" parent="arm_link_5" tilt="0.0">
+    <origin xyz="-0.0269241 -0.0269241 -0.00352829" rpy="-0.0815262661456 -1.36308778895 0.0970158223439"/>
+  </xacro:asus_xtion_camera> 
+-->
   
 </robot>
